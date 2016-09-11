@@ -1,0 +1,1687 @@
+	<?xml version="1.0" encoding="iso-8859-1"?>
+	<!DOCTYPE muclient>
+	 
+	<!--Spellcast Timer created by Zeur and Quow -->
+	 
+	<muclient>
+
+	<plugin
+	   name="Spellcast_Timer"
+	   author="Zeur"
+	   id="cff25318e215986fc1a56e6e"
+	   language="Lua"
+	   purpose="Time Spell casting"
+	   date_written="2015-10-25"
+	   save_state="y"
+	   requires="4.84"
+	   version="2.1"
+	   >
+	</plugin>
+	 
+	<!--  Triggers  -->
+	<!-- Timer start triggers -->
+	<triggers>
+	  <trigger
+	   enabled="y"
+	   keep_evaluating="y"
+	   match="^You prepare to cast Pragi's Fiery Gaze\.$|^You prepare to cast Effermhor's Hypersonic Assault\.$|^You prepare to cast Doctor Kelleflump's Deadly Demon|^You prepare to cast Jogloran's Portal of Cheaper Travel|^You prepare to cast Gammer Shorga's Helpful Undergrowth|^You prepare to cast Transcendent Pneumatic Alleviator|^You prepare to cast Mama Kolydina's Instant Infestation\.$|^You prepare to cast Mother Feelbright's Busy Bees on (.*)\.$|^You prepare to cast Endorphin's Floating Friend|^You prepare to cast Gryntard's Feathery Reliever|^You prepare to cast Finneblaugh's Thaumic Float\.$|You prepare to cast Wungle's Great Sucking on the|You prepare to cast Grisald's Reanimated Guardian|^You prepare to cast Worstler's Advanced Metallurgical Glance|^You prepare to cast Nargl'frob's Empyrean Spear"
+	   omit_from_output="n"
+	   sequence="100"
+	   script="TimeStart"
+	   name="SpelltimeStart"
+	   regexp="y"
+	  >
+	  </trigger>
+
+	<!-- Timer Stop Switches -->
+
+	<trigger
+	   enabled="y"
+	   keep_evaluating="y"
+	   match="^You start dancing wildly around the door throwing power and moonbeams at it in the hope of scaring off the creatures\.$"
+	   omit_from_output="n"
+	   sequence="100"
+	   script="EnableJPCTStop"
+	   name="JPCTEnable"
+	   regexp="y"
+	  >
+	  </trigger>
+
+	  <trigger
+	   enabled="y"
+	   keep_evaluating="y"
+	   match="^You move your hand and the ball of fire zooms out into the immediate vicinity and sweeps over everything\.$"
+	   omit_from_output="n"
+	   sequence="100"
+	   script="EnablePFGStop"
+	   name="PFGEnable"
+	   regexp="y"
+	  >
+	  </trigger>
+
+	  <trigger
+	   enabled="y"
+	   keep_evaluating="y"
+	   match="^The cyclone swirls around you\.$"
+	   omit_from_output="n"
+	   sequence="100"
+	   script="EnableEHAStop"
+	   name="EHAEnable"
+	   regexp="y"
+	  >
+	  </trigger>
+
+	  <trigger
+	   enabled="y"
+	   keep_evaluating="y"
+	   match="You scream in (.*)\: Avaunt\, foul spirit\!"
+	   omit_from_output="n"
+	   sequence="100"
+	   script="EnableDKDDStop"
+	   name="DKDDEnable"
+	   regexp="y"
+	  >
+	  </trigger>
+
+	  <trigger
+	   enabled="y"
+	   keep_evaluating="y"
+	   match="^You quickly throw the seed at the feet of"
+	   omit_from_output="n"
+	   sequence="100"
+	   script="EnableGSHUStop"
+	   name="GSHUEnable"
+	   regexp="y"
+	  >
+	  </trigger>
+
+	  <trigger
+	   enabled="y"
+	   keep_evaluating="y"
+	   match="^You channel magic to form an impact shield around (.*)\.$|^You weave a magical impact shield around"
+	   omit_from_output="n"
+	   sequence="100"
+	   script="EnableTPAStop"
+	   name="TPAEnable"
+	   regexp="y"
+	  >
+	  </trigger>
+
+	  <trigger
+	   enabled="y"
+	   keep_evaluating="y"
+	   match="^When they are positioned to your liking, you begin to weave a web of force around yourself, making it difficult for them to fly away from you\.$"
+	   omit_from_output="n"
+	   sequence="100"
+	   script="EnableMKIIStop"
+	   name="MKIIEnable"
+	   regexp="y"
+	  >
+	  </trigger>
+
+	  <trigger
+	   enabled="y"
+	   keep_evaluating="y"
+	   match="^You assert control over the swarm of honey bees\.$"
+	   omit_from_output="n"
+	   sequence="100"
+	   script="EnableMFBBStop"
+	   name="MFBBEnable"
+	   regexp="y"
+	  >
+	  </trigger>
+
+	  <trigger
+	   enabled="y"
+	   keep_evaluating="y"
+	   match="^You suggest to (.*) that it might like to do this of its own accord\.$"
+	   omit_from_output="n"
+	   sequence="100"
+	   script="EnableEFFStop"
+	   name="EFFEnable"
+	   regexp="y"
+	  >
+	  </trigger>
+
+	  <trigger
+	   enabled="y"
+	   keep_evaluating="y"
+	   match="^You force the essence of the feather into"
+	   omit_from_output="n"
+	   sequence="100"
+	   script="EnableGFRStop"
+	   name="GFREnable"
+	   regexp="y"
+	  >
+	  </trigger>
+
+ 	  <trigger
+	   enabled="y"
+	   keep_evaluating="y"
+	   match="^You lever yourself gently upwards with magic\.$"
+	   omit_from_output="n"
+	   sequence="100"
+	   script="EnableFTFStop"
+	   name="FTFEnable"
+	   regexp="y"
+	  >
+	  </trigger>
+
+  	  <trigger
+	   enabled="y"
+	   keep_evaluating="y"
+	   match="A reddish mist flows out of (.+) and into you\.$"
+	   omit_from_output="n"
+	   sequence="100"
+	   script="EnableWGSStop"
+	   name="WGSEnable"
+	   regexp="y"
+	  >
+	  </trigger>
+
+  	  <trigger
+	   enabled="y"
+	   keep_evaluating="y"
+	   match="^You attempt to repair the worst damage to the body\.$"
+	   omit_from_output="n"
+	   sequence="100"
+	   script="EnableGRGStop"
+	   name="GRGEnable"
+	   regexp="y"
+	  >
+	  </trigger>
+
+  	  <trigger
+	   enabled="y"
+	   keep_evaluating="y"
+	   match="^You think of the location encoded in"
+	   omit_from_output="n"
+	   sequence="100"
+	   script="EnableWAMGStop"
+	   name="WAMGEnable"
+	   regexp="y"
+	  >
+	  </trigger>
+
+  	  <trigger
+	   enabled="y"
+	   keep_evaluating="y"
+	   match="^You loudly exclaim: Let there be light\!$"
+	   omit_from_output="n"
+	   sequence="100"
+	   script="EnableNESStop"
+	   name="NESEnable"
+	   regexp="y"
+	  >
+	  </trigger>
+
+	<!-- Timer Stop Triggers -->
+
+	  <trigger
+	   enabled="n"
+	   keep_evaluating="y"
+	   match="^The fire dies away\.$"
+	   omit_from_output="n"
+	   sequence="100"
+	   script="TimePFGEnd"
+	   name="PFGEnd"
+	   regexp="y"
+	  >
+	  </trigger>
+
+	  <trigger
+	   enabled="n"
+	   keep_evaluating="y"
+	   match="^The cyclone dissipates into the atmosphere and the sound fades away\.$"
+	   omit_from_output="n"
+	   sequence="100"
+	   script="TimeEHAEnd"
+	   name="EHAEnd"
+	   regexp="y"
+	  >
+	  </trigger>
+
+	  <trigger
+	   enabled="n"
+	   keep_evaluating="y"
+	   match="^The demon slowly fades back into shadow, leaving behind a sickly smell and an oily feel to the air\.$|^As the demon begins to melt into shadow again\, it turns to rake at you with its claws\.  A flash of chilly octarine light from your twisted black amulet sends it cowering back\, and it retreats into the shadowy dimensions from whence it came\.$"
+	   omit_from_output="n"
+	   sequence="100"
+	   script="TimeDKDDEnd"
+	   name="DKDDEnd"
+	   regexp="y"
+	  >
+	  </trigger>
+
+	  <trigger
+	   enabled="n"
+	   keep_evaluating="y"
+	   match="^A (.+?) door solidifies with a satisfying thump\.$|^A (.+?) piece of fur solidifies with a satisfying thump\.$"
+	   omit_from_output="n"
+	   sequence="100"
+	   script="TimeJPCTEnd"
+	   name="JPCTEnd"
+	   regexp="y"
+	  >
+	  </trigger>
+
+	  <trigger
+	   enabled="n"
+	   keep_evaluating="y"
+	   match="A low rumble is evident shortly before the ground bursts open and shoots of animated vines wrap themselves around"
+	   omit_from_output="n"
+	   sequence="100"
+	   script="TimeGSHUEnd"
+	   name="GSHUEnd"
+	   regexp="y"
+	  >
+	  </trigger>
+
+	  <trigger
+	   enabled="n"
+	   keep_evaluating="y"
+	   match="^(?:> |)With a noise that sounds like (.*)\, the air around (.*) flashes (.*) for a moment\.$|^(?:> |)With a noise that sounds like (.*)\, everything around you flashes red for a moment\.$"
+	   omit_from_output="n"
+	   sequence="90"
+	   script="TimeTPAEnd"
+	   name="iTPAEnd"
+	   regexp="y"
+	  >
+	  </trigger>
+
+	  <trigger
+	   enabled="n"
+	   keep_evaluating="y"
+	   match="^You reinforce your web by prodding the minds of the insects\, sternly warning them that if they don't stay where they are they'll get no more sugar\.$"
+	   omit_from_output="n"
+	   sequence="100"
+	   script="TimeMKIIEnd"
+	   name="MKIIEnd"
+	   regexp="y"
+	  >
+	  </trigger>
+
+	  <trigger
+	   enabled="n"
+	   keep_evaluating="y"
+	   match="^The swarm of honey bees surrounds (.*), buzzing aggressively\.$"
+	   omit_from_output="n"
+	   sequence="100"
+	   script="TimeMFBBEnd"
+	   name="MFBBEnd"
+	   regexp="y"
+	  >
+	  </trigger>
+
+	  <trigger
+	   enabled="n"
+	   keep_evaluating="y"
+	   match="^(.*) begins to float around you\.$"
+	   omit_from_output="n"
+	   sequence="100"
+	   script="TimeEFFEnd"
+	   name="EFFEnd"
+	   regexp="y"
+	  >
+	  </trigger>
+
+	  <trigger
+	   enabled="n"
+	   keep_evaluating="y"
+	   match="(?P<GFRitem>.*) seems a bit lighter than before\.$"
+	   omit_from_output="n"
+	   sequence="100"
+	   script="TimeGFREnd"
+	   name="GFREnd"
+	   regexp="y"
+	  >
+	  </trigger>
+
+	  <trigger
+	   enabled="n"
+	   keep_evaluating="y"
+	   match="(?P<GFRitem>.*) seems like it will stay light longer\.$"
+	   omit_from_output="n"
+	   sequence="100"
+	   script="TimeGFREnd"
+	   name="GFRExtendEnd"
+	   regexp="y"
+	  >
+	  </trigger>
+
+	  <trigger
+	   enabled="n"
+	   keep_evaluating="y"
+	   match="^You float gently off the ground\.$"
+	   omit_from_output="n"
+	   sequence="100"
+	   script="TimeFTFEnd"
+	   name="FTFEnd"
+	   regexp="y"
+	  >
+	  </trigger>
+
+	  <trigger
+	   enabled="n"
+	   keep_evaluating="y"
+	   match="^You hover a few inches higher above the ground than before for a few seconds, before regaining balance\.$"
+	   omit_from_output="n"
+	   sequence="100"
+	   script="TimeFTFEnd"
+	   name="FTFExtendEnd"
+	   regexp="y"
+	  >
+	  </trigger>
+
+  	  <trigger
+	   enabled="n"
+	   keep_evaluating="y"
+	   match="You feel vitality course through your veins."
+	   omit_from_output="n"
+	   sequence="100"
+	   script="TimeWGSEnd"
+	   name="WGSEnd"
+	   regexp="y"
+	  >
+	  </trigger>
+
+   	  <trigger
+	   enabled="n"
+	   keep_evaluating="y"
+	   match="^The (.+) seems to urge you to gaze into it\.$"
+	   omit_from_output="n"
+	   sequence="100"
+	   script="TimeWAMGEnd"
+	   name="WAMGEnd"
+	   regexp="y"
+	  >
+	  </trigger>
+
+   	  <trigger
+	   enabled="n"
+	   keep_evaluating="y"
+	   match="^The skeleton groans, stirs and rises\.$"
+	   omit_from_output="n"
+	   sequence="100"
+	   script="TimeGRGEnd"
+	   name="GRGEnd"
+	   regexp="y"
+	  >
+	  </trigger>
+
+   	  <trigger
+	   enabled="n"
+	   keep_evaluating="y"
+	   match="^The bolt (strikes|burns|surrounds|smashes|hits|)"
+	   omit_from_output="n"
+	   sequence="100"
+	   script="TimeNESEnd"
+	   name="NESEnd"
+	   regexp="y"
+	  >
+	  </trigger>
+
+
+
+	<!-- Duration End Triggers -->
+
+	  <trigger
+	   enabled="y"
+	   keep_evaluating="y"
+	   match="^(?:> |)In blocking the attack (?:the? |)(?J)(?P<effitem>.*) floating around you is knocked out of orbit\.$|^(?:> |)(?:An? |)(?P<effitem>.*) clatters to the ground\.$"
+	   omit_from_output="n"
+	   sequence="100"
+	   script="EFFDurEnd"
+	   name="EFFDurEnd"
+	   regexp="y"
+	  >
+	  </trigger>
+
+	  <trigger
+	   enabled="y"
+	   keep_evaluating="y"
+	   match="(?P<GFRitem>.*) becomes heavy again."
+	   omit_from_output="n"
+	   sequence="100"
+	   script="GFRDurEnd"
+	   name="GFRDurEnd"
+	   regexp="y"
+	  >
+	  </trigger>
+
+	  <trigger
+	   enabled="y"
+	   keep_evaluating="y"
+	   match="^Your feet touch the ground again\."
+	   omit_from_output="n"
+	   sequence="100"
+	   script="FTFDurEnd"
+	   name="FTFDurEnd"
+	   regexp="y"
+	  >
+	  </trigger>
+
+ 	  <trigger
+	   enabled="y"
+	   keep_evaluating="y"
+	   match="^You feel that your health has returned to normal\.$"
+	   omit_from_output="n"
+	   sequence="100"
+	   script="WGSDurEnd"
+	   name="WGSDurEnd"
+	   regexp="y"
+	  >
+	  </trigger>
+
+   	  <trigger
+	   enabled="y"
+	   keep_evaluating="y"
+	   match="^You lose your mental control over the skeleton\.$"
+	   omit_from_output="n"
+	   sequence="100"
+	   script="GRGDurEnd"
+	   name="GRGDurEnd"
+	   regexp="y"
+	  >
+	  </trigger>
+	 
+	<!-- Counter Triggers -->
+
+	  <trigger
+	   enabled="y"
+	   keep_evaluating="y"
+	   group="blockCounter"
+	   match="^(.*) launches a powerful attack(\.|\,) (.*) but your (.*) swoops in and absorbs all of the blow\.$"
+	   omit_from_output="n"
+	   sequence="100"
+	   script="EFFspecialHit"
+	   name="EFFspeciaHitCount"
+	   regexp="y"
+	  >
+	  </trigger>
+
+	  <trigger
+	   enabled="y"
+	   keep_evaluating="y"
+	   group="blockCounter"
+	   match="^(.*) (launches|attempts to launch) a powerful attack(\.|\,)(.*) you(?!.*swoops).*"
+	   omit_from_output="n"
+	   sequence="100"
+	   script="EFFspecialMiss"
+	   name="EFFspeciaMissCount"
+	   regexp="y"
+	  >
+	  </trigger>
+
+	  <trigger
+	   enabled="y"
+	   keep_evaluating="y"
+	   group="blockCounter"
+	   match="^Your (.*) is too late to block (.*) attack\.$"
+	   omit_from_output="n"
+	   sequence="100"
+	   script="EFFMiss"
+	   name="EFFMissCount"
+	   regexp="y"
+	  >
+	  </trigger>
+
+	  <trigger
+	   enabled="y"
+	   keep_evaluating="y"
+	   group="blockCounter"
+	   match="^(.*) but your floating (.*) swoops in and absorbs all of the blow\.$"
+	   omit_from_output="n"
+	   sequence="100"
+	   script="EFFHit"
+	   name="baseHitCount"
+	   regexp="y"
+	  >
+	  </trigger>
+
+	  <trigger
+	   enabled="y"
+	   keep_evaluating="y"
+	   group="GRGCounter"
+	   match="((?<=at you).+)but the skeleton warrior (.+)parries the blow"
+	   omit_from_output="n"
+	   sequence="100"
+	   script="GRGParry"
+	   name="GRGbaseparryCount"
+	   regexp="y"
+	  >
+	  </trigger>
+
+  	  <trigger
+	   enabled="y"
+	   keep_evaluating="y"
+	   group="GRGCounter"
+	   match="((?<=at you).+)but the skeleton warrior (.+)blocks the blow"
+	   omit_from_output="n"
+	   sequence="100"
+	   script="GRGBlock"
+	   name="GRGbaseblockCount"
+	   regexp="y"
+	  >
+	  </trigger>
+
+  	  <trigger
+	   enabled="y"
+	   keep_evaluating="y"
+	   group="blockCounter"
+	   match="((?<=powerful attack).+)((?<=at you).+)but the skeleton warrior (.+)parries the blow with"
+	   omit_from_output="n"
+	   sequence="100"
+	   script="GRGspecialParry"
+	   name="GRGspeciaparryCount"
+	   regexp="y"
+	  >
+	  </trigger>
+
+  	  <trigger
+	   enabled="y"
+	   keep_evaluating="y"
+	   group="blockCounter"
+	   match="((?<=powerful attack).+)((?<=at you).+)but the skeleton warrior (.+)blocks the blow"
+	   omit_from_output="n"
+	   sequence="100"
+	   script="GRGspecialBlock"
+	   name="GRGspeciablockCount"
+	   regexp="y"
+	  >
+	  </trigger>
+
+
+	</triggers>
+	 
+	<!--  Aliases  -->
+	<aliases>
+	 -- Alias to reset JPCT session counter
+	 <alias
+		  match="#jpct reset"
+		  enabled="y"
+		  ignore_case="y"
+		  send_to="12"
+		  sequence="100"
+		  script="JPCTreset"
+		  >
+	  </alias>
+	  <alias
+		  match="#help me zeur"
+		  enabled="y"
+		  ignore_case="y"
+		  send_to="12"
+		  sequence="100"
+		  script="helpfile"
+		  >
+	  </alias>
+	  <alias
+		  match="#debug"
+		  enabled="y"
+		  ignore_case="y"
+		  send_to="12"
+		  sequence="100"
+		  script="debug"
+		  >
+	  </alias>
+	  <alias
+		  match="#clear GFR duration"
+		  enabled="y"
+		  ignore_case="y"
+		  send_to="12"
+		  sequence="100"
+		  script="clearGFRduration"
+		  >
+	  </alias>
+
+	  <alias
+		  match="#clear FTF duration"
+		  enabled="y"
+		  ignore_case="y"
+		  send_to="12"
+		  sequence="100"
+		  script="clearFTFduration"
+		  >
+	  </alias>
+
+  	  <alias
+		  match="#clear WGS duration"
+		  enabled="y"
+		  ignore_case="y"
+		  send_to="12"
+		  sequence="100"
+		  script="clearWGSduration"
+		  >
+	  </alias>
+
+    <alias
+		  match="#clear GRG duration"
+		  enabled="y"
+		  ignore_case="y"
+		  send_to="12"
+		  sequence="100"
+		  script="clearGRGduration"
+		  >
+	  </alias>
+
+   	  <alias
+		  match="#wamg reset"
+		  enabled="y"
+		  ignore_case="y"
+		  send_to="12"
+		  sequence="100"
+		  script="WAMGreset"
+		  >
+	  </alias>
+
+	  <alias
+		  match="#display stats"
+		  enabled="y"
+		  ignore_case="y"
+		  send_to="12"
+		  sequence="100"
+		  script="DisplayStats"
+		  >
+	  </alias>
+	</aliases>
+	 
+	<!--  Timers  -->
+	-- Changed to 1 from 15
+	<timers>
+	  <timer
+		  name="Duration_ticker"
+		  script="Duration_ticker" 
+		  enabled="y" 
+		  second="1.00" 
+		  >
+	  </timer>
+	</timers>
+	 
+	<script>
+	<![CDATA[
+
+	-- ********************************************************************
+	-- *****                Quow and Zeur's Cast Timer                *****
+	-- ********************************************************************
+
+	require "tprint" -- debugging
+
+	spelltimevar = {}
+	ticktime = 0
+	spelltimevar.iStartTime = 0
+	iPFGCount = 0
+	iPFGAverage = "firsttime"
+	iPFGFastest = "firsttime"
+	iPFGSlowest = "firsttime"
+	iEHACount = 0
+	iEHAAverage = "firsttime"
+	iEHAFastest = "firsttime"
+	iEHASlowest = "firsttime"
+	iDKDDCount = 0
+	iDKDDAverage = "firsttime"
+	iDKDDFastest = "firsttime"
+	iDKDDSlowest = "firsttime"
+	iJPCTCount = 0
+	iJPCTSession = 0
+	iJPCTAverage = "firsttime"
+	iJPCTFastest = "firsttime"
+	iJPCTSlowest = "firsttime"
+	iGSHUCount = 0
+	iGSHUAverage = "firsttime"
+	iGSHUFastest = "firsttime"
+	iGSHUSlowest = "firsttime"
+	iTPACount = 0
+	iTPAAverage = "firsttime"
+	iTPAFastest = "firsttime"
+	iTPASlowest = "firsttime"
+	iMKIICount = 0
+	iMKIIAverage = "firsttime"
+	iMKIIFastest = "firsttime"
+	iMKIISlowest = "firsttime"
+	iMFBBCount = 0
+	iMFBBAverage = "firsttime"
+	iMFBBFastest = "firsttime"
+	iMFBBSlowest = "firsttime"
+	iEFFCount = 0
+	iEFFAverage = "firsttime"
+	iEFFFastest = "firsttime"
+	iEFFSlowest = "firsttime"
+	iGFRCount = 0
+	iGFRAverage = "firsttime"
+	iGFRFastest = "firsttime"
+	iGFRSlowest = "firsttime"
+	iFTFCount = 0
+	iFTFAverage = "firsttime"
+	iFTFFastest = "firsttime"
+	iFTFSlowest = "firsttime"
+	iWGSCount = 0
+	iWGSAverage = "firsttime"
+	iWGSFastest = "firsttime"
+	iWGSSlowest = "firsttime"
+	iGRGCount = 0
+	iGRGAverage = "firsttime"
+	iGRGFastest = "firsttime"
+	iGRGSlowest = "firsttime"
+	iWAMGCount = 0
+	iWAMGSession = 0
+	iWAMGAverage = "firsttime"
+	iWAMGFastest = "firsttime"
+	iWAMGSlowest = "firsttime"
+	iNESCount = 0
+	iNESAverage = "firsttime"
+	iNESFastest = "firsttime"
+	iNESSlowest = "firsttime"
+
+
+	iEFFDurStart = 0
+	iEFFHit = 0
+	iEFFMiss = 0
+	iEFFSpecialHit = 0
+	iEFFSpecialMiss = 0
+	iEFFBaseEff = 0
+	iEFFSpEff = 0
+	iEFFDuration = 0
+
+	iGRGDurStart = 0
+	iGRGDuration = 0
+	iGRGParry = 0
+	iGRGBlock = 0
+	iGRGSpecialParry = 0
+	iGRGSpecialBlock = 0
+	
+	iGFRDuration = 0
+	iGFRTable = {}
+	GFRinit = false -- To disable resetting of timer on re-casts
+
+	iFTFDurStart = 0
+	iFTFDuration = 0
+	FTFinit = false
+
+	iWGSDurStart = 0
+	iFTFDuration = 0
+	WGSinit = false
+
+	-- Start Function --
+
+	-- Spell Timer Start
+	function TimeStart (sName, sLine, wildcards)
+	  spelltimevar.iStartTime = os.time()
+	end -- Spell Timer Start
+
+	-- Stop Switch Functions --
+
+	-- PFG Timer Stop Enable
+	function EnablePFGStop ()
+		EnableTrigger ("PFGEnd", true) -- Enable PFG Stop Trigger 
+	end -- PFG Timer Stop Enable
+
+	-- EHA Timer Stop Enable
+	function EnableEHAStop ()
+		EnableTrigger ("EHAEnd", true) -- Enable EHA Stop Trigger 
+	end -- EHA Timer Stop Enable
+
+	-- DKDD Timer Stop Enable
+	function EnableDKDDStop ()
+		EnableTrigger ("DKDDEnd", true) -- Enable JPCT Stop Trigger 
+	end -- DKDD Timer Stop Enable
+
+	-- JPCT Timer Stop Enable
+	function EnableJPCTStop ()
+	  EnableTrigger ("JPCTEnd", true) -- Enable JPCT Stop Trigger when you are the portaller
+	end -- JPCT Timer Stop Enable
+
+	-- GSHU Timer Stop Enable
+	function EnableGSHUStop ()
+		EnableTrigger ("GSHUEnd", true) -- Enable GSHU Stop Trigger 
+	end -- GSHU Timer Stop Enable
+
+	-- TPA Timer Stop Enable
+	function EnableTPAStop ()
+		EnableTrigger ("iTPAEnd", true) -- Enable TPA Stop Trigger 
+	end -- TPA Timer Stop Enable
+
+	-- MKII Timer Stop Enable
+	function EnableMKIIStop ()
+		EnableTrigger ("MKIIEnd", true) -- Enable MKII Stop Trigger 
+	end -- MKII Timer Stop Enable
+
+	-- MFBB Timer Stop Enable
+	function EnableMFBBStop ()
+		EnableTrigger ("MFBBEnd", true) -- Enable MFBB Stop Trigger 
+	end -- MFBB Timer Stop Enable
+
+	-- EFF Timer Stop Enable
+	function EnableEFFStop ()
+		EnableTrigger ("EFFEnd", true) -- Enable EFF Stop Trigger 
+	end -- EFF Timer Stop Enable
+
+	-- GFR Timer Stop Enable
+	function EnableGFRStop ()
+		EnableTrigger ("GFREnd", true) -- Enable GFR Stop Triggers
+		EnableTrigger ("GFRExtendEnd", true)
+	end -- GFR Timer Stop Enable
+
+	-- FTF Timer Stop Enable
+	function EnableFTFStop ()
+		EnableTrigger ("FTFEnd", true) -- Enable FTF Stop Triggers
+		EnableTrigger ("FTFExtendEnd", true)
+	end -- FTF Timer Stop Enable
+
+	-- WGS Timer Stop Enable
+	function EnableWGSStop ()
+		EnableTrigger ("WGSEnd", true) -- Enable WGS Stop Triggers
+		EnableTrigger ("WGSExtendEnd", true)
+	end -- WGS Timer Stop Enable
+
+	-- GRG Timer Stop Enable
+	function EnableGRGStop ()
+		EnableTrigger ("GRGEnd", true) -- Enable GRG Stop Triggers
+	end -- GRG Timer Stop Enable
+
+	-- WAMG Timer Stop Enable
+	function EnableWAMGStop ()
+		EnableTrigger ("WAMGEnd", true) -- Enable WAMG Stop Triggers
+	end -- WAMG Timer Stop Enable
+
+	-- NES Timer Stop Enable
+	function EnableNESStop ()
+		EnableTrigger ("NESEnd", true) -- Enable NES Stop Triggers
+	end -- NES Timer Stop Enable
+
+	-- Stop and Print Functions --
+
+	-- PFG Timer End
+	function TimePFGEnd (sName, sLine, wildcards)
+	  local iPFGTime = os.time() - spelltimevar.iStartTime
+	  EnableTrigger ("PFGEnd", false)
+		if (iPFGAverage == "firsttime") then	
+			iPFGAverage = iPFGTime
+		else 
+			iPFGAverage = (((iPFGCount * iPFGAverage) + iPFGTime) / (iPFGCount + 1))
+		end
+		if (iPFGFastest == "firsttime") then
+			iPFGFastest = iPFGTime
+		elseif (iPFGTime <= iPFGFastest) then
+			iPFGFastest = iPFGTime
+		end
+		if (iPFGSlowest == "firsttime") then
+			iPFGSlowest = iPFGTime
+		elseif (iPFGTime >= iPFGSlowest) then
+			iPFGSlowest = iPFGTime
+		end
+	  iPFGCount = iPFGCount + 1
+	  Note("PFG time = " .. tostring(iPFGTime) .. "s " .. "|" .. " Avg time = " .. tostring(roundToNthDecimal(iPFGAverage,1)) .. "s " .. "|" .. " Slowest = " .. tostring(iPFGSlowest) .. "s " .. "|" .. " Fastest = " .. tostring(iPFGFastest) .. "s " .. "|" .. " Casts = " .. tostring(iPFGCount))
+	end -- PFG Timer End
+
+	-- EHA Timer End
+	function TimeEHAEnd (sName, sLine, wildcards)
+	  local iEHATime = os.time() - spelltimevar.iStartTime
+	  EnableTrigger ("EHAEnd", false)  
+		if (iEHAAverage == "firsttime") then
+			iEHAAverage = iEHATime
+		else 
+			iEHAAverage = (((iEHACount * iEHAAverage) + iEHATime) / (iEHACount + 1))
+		  end
+		if (iEHAFastest == "firsttime") then
+			iEHAFastest = iEHATime
+		elseif (iEHATime <= iEHAFastest) then
+			iEHAFastest = iEHATime
+		end
+		if (iEHASlowest == "firsttime") then
+			iEHASlowest = iEHATime
+		elseif (iEHATime >= iEHASlowest) then
+			iEHASlowest = iEHATime
+		end
+	  iEHACount = iEHACount + 1
+	  Note("EHA time = " .. tostring(iEHATime) .. "s " .. "|" .. " Avg time = " .. tostring(roundToNthDecimal(iEHAAverage,1)) .. "s " .. "|" .. " Slowest = " .. tostring(iEHASlowest) .. "s " .. "|" .. " Fastest = " .. tostring(iEHAFastest) .. "s " .. "|" .. " Casts = " .. tostring(iEHACount))
+	end -- EHA Timer End
+
+	-- DKDD Timer End
+	function TimeDKDDEnd (sName, sLine, wildcards)
+	  local iDKDDTime = os.time() - spelltimevar.iStartTime
+	  EnableTrigger ("DKDDEnd", false)
+		if (iDKDDAverage == "firsttime") then
+			iDKDDAverage = iDKDDTime
+		else 
+			iDKDDAverage = (((iDKDDCount * iDKDDAverage) + iDKDDTime) / (iDKDDCount + 1))
+		end
+		if (iDKDDFastest == "firsttime") then
+			iDKDDFastest = iDKDDTime
+		elseif (iDKDDTime <= iDKDDFastest) then
+			iDKDDFastest = iDKDDTime
+			end
+		if (iDKDDSlowest == "firsttime") then
+			iDKDDSlowest = iDKDDTime
+		elseif (iDKDDTime >= iDKDDSlowest) then
+			iDKDDSlowest = iDKDDTime
+		end
+		iDKDDCount = iDKDDCount + 1
+	   Note("DKDD time = " .. tostring(iDKDDTime) .. "s " .. "|" .. " Avg time = " .. tostring(roundToNthDecimal(iDKDDAverage,1)) .. "s " .. "|" .. " Slowest = " .. tostring(iDKDDSlowest) .. "s " .. "|" .. " Fastest = " .. tostring(iDKDDFastest) .. "s " .. "|" .. " Casts = " .. tostring(iDKDDCount))
+	end -- DKDD Timer End
+
+	-- JPCT Timer End
+	function TimeJPCTEnd (sName, sLine, wildcards)
+	  local iJPCTTime = os.time() - spelltimevar.iStartTime
+	  EnableTrigger ("JPCTEnd", false) -- Disable JPCT Stop Trigger when you are the portaller
+		if (iJPCTAverage == "firsttime") then
+			iJPCTAverage = iJPCTTime
+		else 
+			iJPCTAverage = (((iJPCTCount * iJPCTAverage) + iJPCTTime) / (iJPCTCount + 1))
+		end
+		if (iJPCTFastest == "firsttime") then
+			iJPCTFastest = iJPCTTime
+		elseif (iJPCTTime <= iJPCTFastest) then
+			iJPCTFastest = iJPCTTime
+		end
+		if (iJPCTSlowest == "firsttime") then
+			iJPCTSlowest = iJPCTTime
+		elseif (iJPCTTime >= iJPCTSlowest) then
+			iJPCTSlowest = iJPCTTime
+		end
+		iJPCTCount = iJPCTCount + 1
+		iJPCTSession = iJPCTSession + 1
+	  Note("JPCT time = " .. tostring(iJPCTTime) .. "s " .. "|" .. " Avg time = " .. tostring(roundToNthDecimal(iJPCTAverage,1)) .. "s " .. "|" .. " Slowest = " .. tostring(iJPCTSlowest) .. "s " .. "|" .. " Fastest = " .. tostring(iJPCTFastest) .. "s " .. "|" .. " Casts = " .. tostring(iJPCTCount) .. " " .. "|" .. " Session Casts = " .. tostring(iJPCTSession))
+	end -- JPCT Timer End
+
+
+	-- GSHU Timer End
+	function TimeGSHUEnd (sName, sLine, wildcards)
+	  local iGSHUTime = os.time() - spelltimevar.iStartTime
+	   EnableTrigger ("GSHUEnd", false) -- Disable GSHU Stop Trigger
+		if (iGSHUAverage == "firsttime") then
+			iGSHUAverage = iGSHUTime
+		else 
+			iGSHUAverage = (((iGSHUCount * iGSHUAverage) + iGSHUTime) / (iGSHUCount + 1))
+		end
+		if (iGSHUFastest == "firsttime") then
+			iGSHUFastest = iGSHUTime
+		elseif (iGSHUTime <= iGSHUFastest) then
+			iGSHUFastest = iGSHUTime
+		end
+		if (iGSHUSlowest == "firsttime") then
+			iGSHUSlowest = iGSHUTime
+		elseif (iGSHUTime >= iGSHUSlowest) then
+			iGSHUSlowest = iGSHUTime
+		end
+		iGSHUCount = iGSHUCount + 1
+	  Note("Vine time = " .. tostring(iGSHUTime) .. "s " .. "|" .. " Avg time = " .. tostring(roundToNthDecimal(iGSHUAverage,1)) .. "s " .. "|" .. " Slowest = " .. tostring(iGSHUSlowest) .. "s " .. "|" .. " Fastest = " .. tostring(iGSHUFastest) .. "s " .. "|" .. " Casts = " .. tostring(iGSHUCount))
+	end -- GSHU Timer End
+
+	-- TPA Timer End
+	function TimeTPAEnd (sName, sLine, wildcards)
+	  local iTPATime = os.time() - spelltimevar.iStartTime
+	  EnableTrigger ("iTPAEnd", false) -- Disable TPA Stop Trigger
+		if (iTPAAverage == "firsttime") then
+			iTPAAverage = iTPATime
+		else 
+			iTPAAverage = (((iTPACount * iTPAAverage) + iTPATime) / (iTPACount + 1))
+		end
+		if (iTPAFastest == "firsttime") then
+			iTPAFastest = iTPATime
+		elseif (iTPATime <= iTPAFastest) then
+			iTPAFastest = iTPATime
+		end
+		if (iTPASlowest == "firsttime") then
+			iTPASlowest = iTPATime
+		elseif (iTPATime >= iTPASlowest) then
+			iTPASlowest = iTPATime
+		end
+		iTPACount = iTPACount + 1
+	  Note("TPA time = " .. tostring(iTPATime) .. "s " .. "|" .. " Avg time = " .. tostring(roundToNthDecimal(iTPAAverage,1)) .. "s " .. "|" .. " Slowest = " .. tostring(iTPASlowest) .. "s " .. "|" .. " Fastest = " .. tostring(iTPAFastest) .. "s " .. "|" .. " Casts = " .. tostring(iTPACount))
+	end -- TPA Timer End
+
+	-- MKII Timer End
+	function TimeMKIIEnd (sName, sLine, wildcards)
+	  local iMKIITime = os.time() - spelltimevar.iStartTime
+	  EnableTrigger ("MKIIEnd", false) -- Disable MKII Stop Trigger
+		if (iMKIIAverage == "firsttime") then
+			iMKIIAverage = iMKIITime
+		else 
+			iMKIIAverage = (((iMKIICount * iMKIIAverage) + iMKIITime) / (iMKIICount + 1))
+		end
+		if (iMKIIFastest == "firsttime") then
+			iMKIIFastest = iMKIITime
+		elseif (iMKIITime <= iMKIIFastest) then
+			iMKIIFastest = iMKIITime
+		end
+		if (iMKIISlowest == "firsttime") then
+			iMKIISlowest = iMKIITime
+		elseif (iMKIITime >= iMKIISlowest) then
+			iMKIISlowest = iMKIITime
+		end
+		iMKIICount = iMKIICount + 1
+	  Note("BUGS time = " .. tostring(iMKIITime) .. "s " .. "|" .. " Avg time = " .. tostring(roundToNthDecimal(iMKIIAverage,1)) .. "s " .. "|" .. " Slowest = " .. tostring(iMKIISlowest) .. "s " .. "|" .. " Fastest = " .. tostring(iMKIIFastest) .. "s " .. "|" .. " Casts = " .. tostring(iMKIICount))
+	end -- MKII Timer End
+
+	-- MFBB Timer End
+	function TimeMFBBEnd (sName, sLine, wildcards)
+	  local iMFBBTime = os.time() - spelltimevar.iStartTime
+	  EnableTrigger ("MFBBEnd", false) -- Disable MFBB Stop Trigger
+		if (iMFBBAverage == "firsttime") then
+			iMFBBAverage = iMFBBTime
+		else 
+			iMFBBAverage = (((iMFBBCount * iMFBBAverage) + iMFBBTime) / (iMFBBCount + 1))
+		end
+		if (iMFBBFastest == "firsttime") then
+			iMFBBFastest = iMFBBTime
+		elseif (iMFBBTime <= iMFBBFastest) then
+			iMFBBFastest = iMFBBTime
+		end
+		if (iMFBBSlowest == "firsttime") then
+			iMFBBSlowest = iMFBBTime
+		elseif (iMFBBTime >= iMFBBSlowest) then
+			iMFBBSlowest = iMFBBTime
+		end
+		iMFBBCount = iMFBBCount + 1
+	  Note("BEES time = " .. tostring(iMFBBTime) .. "s " .. "|" .. " Avg time = " .. tostring(roundToNthDecimal(iMFBBAverage,1)) .. "s " .. "|" .. " Slowest = " .. tostring(iMFBBSlowest) .. "s " .. "|" .. " Fastest = " .. tostring(iMFBBFastest) .. "s " .. "|" .. " Casts = " .. tostring(iMFBBCount))
+	end -- MFBB Timer End
+
+	-- EFF Timer End
+	function TimeEFFEnd (sName, sLine, wildcards)
+	  local iEFFTime = os.time() - spelltimevar.iStartTime
+	  iEFFDurStart = os.time()
+	  EnableTrigger ("EFFEnd", false) -- Disable EFF Stop Trigger
+		if (iEFFAverage == "firsttime") then
+			iEFFAverage = iEFFTime
+		else 
+			iEFFAverage = (((iEFFCount * iEFFAverage) + iEFFTime) / (iEFFCount + 1))
+		end
+		if (iEFFFastest == "firsttime") then
+			iEFFFastest = iEFFTime
+		elseif (iEFFTime <= iEFFFastest) then
+			iEFFFastest = iEFFTime
+		end
+		if (iEFFSlowest == "firsttime") then
+			iEFFSlowest = iEFFTime
+		elseif (iEFFTime >= iEFFSlowest) then
+			iEFFSlowest = iEFFTime
+		end
+		iEFFCount = iEFFCount + 1
+	  Note("EFF time = " .. tostring(iEFFTime) .. "s " .. "|" .. " Avg time = " .. tostring(roundToNthDecimal(iEFFAverage,1)) .. "s " .. "|" .. " Slowest = " .. tostring(iEFFSlowest) .. "s " .. "|" .. " Fastest = " .. tostring(iEFFFastest) .. "s " .. "|" .. " Casts = " .. tostring(iEFFCount))
+	end -- EFF Timer End
+
+	-- GFR Timer End
+	function TimeGFREnd (sName, sLine, wildcards)
+	  local iGFRTime = os.time() - spelltimevar.iStartTime
+	  local iGFRDurStart = os.time()
+	  EnableTrigger ("GFREnd", false) -- Disable GFR Stop Trigger
+	  EnableTrigger ("GFRExtendEnd", false)
+		if (iGFRAverage == "firsttime") then
+			iGFRAverage = iGFRTime
+		else 
+			iGFRAverage = (((iGFRCount * iGFRAverage) + iGFRTime) / (iGFRCount + 1))
+		end
+		if (iGFRFastest == "firsttime") then
+			iGFRFastest = iGFRTime
+		elseif (iGFRTime <= iGFRFastest) then
+			iGFRFastest = iGFRTime
+		end
+		if (iGFRSlowest == "firsttime") then
+			iGFRSlowest = iGFRTime
+		elseif (iGFRTime >= iGFRSlowest) then
+			iGFRSlowest = iGFRTime
+		end
+		iGFRCount = iGFRCount + 1
+		Note("GFR time = " .. tostring(iGFRTime) .. "s " .. "|" .. " Avg time = " .. tostring(roundToNthDecimal(iGFRAverage,1)) .. "s " .. "|" .. " Slowest = " .. tostring(iGFRSlowest) .. "s " .. "|" .. " Fastest = " .. tostring(iGFRFastest) .. "s " .. "|" .. " Casts = " .. tostring(iGFRCount))
+		local GFRitem = wildcards.GFRitem -- Add GFR'd item to table
+		iGFRTable[GFRitem] = iGFRDurStart
+		if (iGFRDuration == nil or iGFRDuration == 0) and (GFRinit == false) then
+			SendToWorld("chats", "blue", "", "[GFR Report] Duration timing initialized.")
+			GFRinit = true
+		end
+	end -- GFR Timer End
+
+	-- FTF Timer End
+	function TimeFTFEnd (sName, sLine, wildcards)
+	  local iFTFTime = os.time() - spelltimevar.iStartTime
+	  iFTFDurStart = os.time()
+	  EnableTrigger ("FTFEnd", false) -- Disable FTF Stop Trigger
+	  EnableTrigger ("FTFExtendEnd", false)
+		if (iFTFAverage == "firsttime") then
+			iFTFAverage = iFTFTime
+		else 
+			iFTFAverage = (((iFTFCount * iFTFAverage) + iFTFTime) / (iFTFCount + 1))
+		end
+		if (iFTFFastest == "firsttime") then
+			iFTFFastest = iFTFTime
+		elseif (iFTFTime <= iFTFFastest) then
+			iFTFFastest = iFTFTime
+		end
+		if (iFTFSlowest == "firsttime") then
+			iFTFSlowest = iFTFTime
+		elseif (iFTFTime >= iFTFSlowest) then
+			iFTFSlowest = iFTFTime
+		end
+		iFTFCount = iFTFCount + 1
+		Note("FTF time = " .. tostring(iFTFTime) .. "s " .. "|" .. " Avg time = " .. tostring(roundToNthDecimal(iFTFAverage,1)) .. "s " .. "|" .. " Slowest = " .. tostring(iFTFSlowest) .. "s " .. "|" .. " Fastest = " .. tostring(iFTFFastest) .. "s " .. "|" .. " Casts = " .. tostring(iFTFCount))
+		if (iFTFDuration == nil or iFTFDuration == 0) and (FTFinit == false) then
+			SendToWorld("chats", "orange", "", "[FTF Report] Duration timing initialized.")
+			FTFinit = true
+		end
+	end -- FTF Timer End
+
+	-- WGS Timer End
+	function TimeWGSEnd (sName, sLine, wildcards)
+	  local iWGSTime = os.time() - spelltimevar.iStartTime
+	  iWGSDurStart = os.time()
+	  EnableTrigger ("WGSEnd", false) -- Disable WGS Stop Trigger
+	  EnableTrigger ("WGSExtendEnd", false)
+		if (iWGSAverage == "firsttime") then
+			iWGSAverage = iWGSTime
+		else 
+			iWGSAverage = (((iWGSCount * iWGSAverage) + iWGSTime) / (iWGSCount + 1))
+		end
+		if (iWGSFastest == "firsttime") then
+			iWGSFastest = iWGSTime
+		elseif (iWGSTime <= iWGSFastest) then
+			iWGSFastest = iWGSTime
+		end
+		if (iWGSSlowest == "firsttime") then
+			iWGSSlowest = iWGSTime
+		elseif (iWGSTime >= iWGSSlowest) then
+			iWGSSlowest = iWGSTime
+		end
+		iWGSCount = iWGSCount + 1
+		Note("WGS time = " .. tostring(iWGSTime) .. "s " .. "|" .. " Avg time = " .. tostring(roundToNthDecimal(iWGSAverage,1)) .. "s " .. "|" .. " Slowest = " .. tostring(iWGSSlowest) .. "s " .. "|" .. " Fastest = " .. tostring(iWGSFastest) .. "s " .. "|" .. " Casts = " .. tostring(iWGSCount))
+		if (iWGSDuration == nil or iWGSDuration == 0) and (WGSinit == false) then
+			SendToWorld("chats", "red", "", "[WGS Report] Duration timing initialized.")
+			WGSinit = true
+		end
+	end -- WGS Timer End
+
+		-- GRG Timer End
+	function TimeGRGEnd (sName, sLine, wildcards)
+	  local iGRGTime = os.time() - spelltimevar.iStartTime
+	  iGRGDurStart = os.time()
+	  EnableTrigger ("GRGEnd", false) -- Disable GRG Stop Trigger
+		if (iGRGAverage == "firsttime") then
+			iGRGAverage = iGRGTime
+		else 
+			iGRGAverage = (((iGRGCount * iGRGAverage) + iGRGTime) / (iGRGCount + 1))
+		end
+		if (iGRGFastest == "firsttime") then
+			iGRGFastest = iGRGTime
+		elseif (iGRGTime <= iGRGFastest) then
+			iGRGFastest = iGRGTime
+		end
+		if (iGRGSlowest == "firsttime") then
+			iGRGSlowest = iGRGTime
+		elseif (iGRGTime >= iGRGSlowest) then
+			iGRGSlowest = iGRGTime
+		end
+		iGRGCount = iGRGCount + 1
+	  Note("GRG time = " .. tostring(iGRGTime) .. "s " .. "|" .. " Avg time = " .. tostring(roundToNthDecimal(iGRGAverage,1)) .. "s " .. "|" .. " Slowest = " .. tostring(iGRGSlowest) .. "s " .. "|" .. " Fastest = " .. tostring(iGRGFastest) .. "s " .. "|" .. " Casts = " .. tostring(iGRGCount))	  		
+	  if (iGRGDuration == nil or iGRGDuration == 0) then
+			SendToWorld("chats", "yellow", "", "[GRG Report] Duration timing initialized.")
+		end
+	end -- GRG Timer End
+
+	-- WAMG Timer End
+	function TimeWAMGEnd (sName, sLine, wildcards)
+	  local iWAMGTime = os.time() - spelltimevar.iStartTime
+	  EnableTrigger ("WAMGEnd", false) -- Disable WAMG Stop Trigger when you are the portaller
+		if (iWAMGAverage == "firsttime") then
+			iWAMGAverage = iWAMGTime
+		else 
+			iWAMGAverage = (((iWAMGCount * iWAMGAverage) + iWAMGTime) / (iWAMGCount + 1))
+		end
+		if (iWAMGFastest == "firsttime") then
+			iWAMGFastest = iWAMGTime
+		elseif (iWAMGTime <= iWAMGFastest) then
+			iWAMGFastest = iWAMGTime
+		end
+		if (iWAMGSlowest == "firsttime") then
+			iWAMGSlowest = iWAMGTime
+		elseif (iWAMGTime >= iWAMGSlowest) then
+			iWAMGSlowest = iWAMGTime
+		end
+		iWAMGCount = iWAMGCount + 1
+		iWAMGSession = iWAMGSession + 1
+	  Note("WAMG time = " .. tostring(iWAMGTime) .. "s " .. "|" .. " Avg time = " .. tostring(roundToNthDecimal(iWAMGAverage,1)) .. "s " .. "|" .. " Slowest = " .. tostring(iWAMGSlowest) .. "s " .. "|" .. " Fastest = " .. tostring(iWAMGFastest) .. "s " .. "|" .. " Casts = " .. tostring(iWAMGCount) .. " " .. "|" .. " Session Casts = " .. tostring(iWAMGSession))
+	end -- WAMG Timer End
+
+	-- NES Timer End
+	function TimeNESEnd (sName, sLine, wildcards)
+	  local iNESTime = os.time() - spelltimevar.iStartTime
+	  EnableTrigger ("NESEnd", false) -- Disable NES Stop Trigger when you are the portaller
+		if (iNESAverage == "firsttime") then
+			iNESAverage = iNESTime
+		else 
+			iNESAverage = (((iNESCount * iNESAverage) + iNESTime) / (iNESCount + 1))
+		end
+		if (iNESFastest == "firsttime") then
+			iNESFastest = iNESTime
+		elseif (iNESTime <= iNESFastest) then
+			iNESFastest = iNESTime
+		end
+		if (iNESSlowest == "firsttime") then
+			iNESSlowest = iNESTime
+		elseif (iNESTime >= iNESSlowest) then
+			iNESSlowest = iNESTime
+		end
+		iNESCount = iNESCount + 1
+	  Note("NES time = " .. tostring(iNESTime) .. "s " .. "|" .. " Avg time = " .. tostring(roundToNthDecimal(iNESAverage,1)) .. "s " .. "|" .. " Slowest = " .. tostring(iNESSlowest) .. "s " .. "|" .. " Fastest = " .. tostring(iNESFastest) .. "s " .. "|" .. " Casts = " .. tostring(iNESCount))
+	end -- WAMG Timer End
+
+	-- Duration end functions
+
+	-- EFF Duration
+	function EFFDurEnd(sName, sLine, wildcards)
+		local iEFFDurEnd = os.time()
+		iEFFDuration = iEFFDurEnd - iEFFDurStart
+		if iEFFHit ~= 0 then
+			iEFFBaseEff = ((iEFFHit  * 100)/(iEFFHit + iEFFMiss))
+		else 
+			iEFFBaseEff = 0
+		end
+
+		if iEFFSpecialHit ~= 0 then
+			iEFFSpEff = ((iEFFSpecialHit * 100)/(iEFFSpecialHit + iEFFSpecialMiss))
+		else
+			iEFFSpEff = 0
+		end
+		local imessage = ("[EFF Report] EFF Duration : " .. convertTime(iEFFDuration) .. " | Base Block: " .. iEFFHit .. "  Base Miss: " .. iEFFMiss .. "  Base Eff: " .. tostring(roundToNthDecimal(iEFFBaseEff)) .. "% |" .. " Sp Block: " .. iEFFSpecialHit .. "  Sp Miss: " .. iEFFSpecialMiss .. "  Sp Eff: " .. tostring(roundToNthDecimal(iEFFSpEff)) .. "%")
+		SendToWorld("chats", "green", "", imessage)   
+		clearEFF()
+	 end -- EFF Duration
+	 
+	-- GFR Duration
+	 function GFRDurEnd(sName, sLine, wildcards)
+		local GFRitem = wildcards.GFRitem -- Used to remove GFR'd item to table
+		if (iGFRDuration == 0 or iGFRDuration == nil) and (iGFRTable[GFRitem] ~= nil) then
+			local iGFRDurEnd = os.time()
+			local iGFRDurStart = iGFRTable[GFRitem]
+			iGFRDuration = iGFRDurEnd - iGFRDurStart
+			local imessage = ("[GFR Report] GFR Duration saved. Time: " .. convertTime(iGFRDuration))
+			SendToWorld("chats", "blue", "", imessage)
+		end
+
+		if (iGFRTable[GFRitem] ~= nil) then
+			local imessage = ("[GFR Report] Gryntard's Feathery Reliever effect on " .. GFRitem .. " has ended.")
+			SendToWorld("chats", "blue", "", imessage)
+			iGFRTable[GFRitem] = nil
+			end
+	end -- GFR Duration
+
+	-- FTF Duration
+	 function FTFDurEnd(sName, sLine, wildcards)
+		if (iFTFDuration == nil or iFTFDuration == 0) then
+			local iFTFDurEnd = os.time()
+			iFTFDuration = iFTFDurEnd - iFTFDurStart
+			imessage = ("[FTF Report] FTF Duration saved. Time: " .. convertTime(iFTFDuration))
+			SendToWorld("chats", "orange", "", imessage)
+		end
+		local imessage = ("[FTF Report] Finneblaugh's Thaumic Float effect has ended.")
+		SendToWorld("chats", "orange", "", imessage)
+	end -- GFR Duration
+
+	-- WGS Duration
+	 function WGSDurEnd(sName, sLine, wildcards)
+		if (iWGSDuration == nil or iWGSDuration == 0) then
+			local iWGSDurEnd = os.time()
+			iWGSDuration = iWGSDurEnd - iWGSDurStart
+			imessage = ("[WGS Report] WGS Duration saved. Time: " .. convertTime(iWGSDuration))
+			SendToWorld("chats", "red", "", imessage)
+		end
+		local imessage = ("[WGS Report] Wungle's Great Sucking effect has ended.")
+		iWGSDurStart = 0
+		SendToWorld("chats", "red", "", imessage)
+	end -- WGS Duration
+
+	-- GRG Duration
+	function GRGDurEnd(sName, sLine, wildcards)
+		if iGRGDurStart ~= 0 then
+			local iGRGDurEnd = os.time()
+			local iGRGDur = iGRGDurEnd - iGRGDurStart
+			local imessage = ("[GRG Report] GRG Duration: " .. convertTime(iGRGDur) .. " | Base Parry: " .. iGRGParry .. " | Base Block: " .. iGRGBlock .. " | Sp Parry: " .. iGRGSpecialParry .. " | Sp Block: " .. iGRGSpecialBlock)
+			SendToWorld("chats", "yellow", "", imessage)  
+			clearGRG()
+				if (iGRGDuration == nil or iGRGDuration == 0) then
+					local iGRGDurEnd = os.time()
+					iGRGDuration = iGRGDur
+					local imessage = ("[GRG Report] GRG Duration saved. Time: " .. convertTime(iGRGDuration))
+					SendToWorld("chats", "yellow", "", imessage)
+				end
+		end
+	 end -- GRG Duration
+
+	 -- Changed for 60 second display
+
+	-- Duration Countdown function
+	function Duration_ticker()
+		if (iGFRDuration ~= nil and iGFRDuration ~= 0) then
+			for iGFRKey,iGFRValue in pairs(iGFRTable) do
+				local Time = os.time()
+				local TimeEnd = iGFRValue + iGFRDuration
+				local DeltaTime = TimeEnd - Time
+				if (DeltaTime == 60) then 
+					local imessage = ("[GFR Report] " .. iGFRKey .. " will expire in " .. convertTime(DeltaTime))
+					SendToWorld ("chats", "blue", "", imessage)
+				end 
+			end
+		end
+		if (iFTFDurStart ~= nil and iFTFDurStart ~= 0) then
+			local Time = os.time()
+			local TimeEnd = iFTFDuration + iFTFDurStart
+			local DeltaTime = TimeEnd - Time
+			if (DeltaTime == 60) then 
+				local imessage = ("[FTF Report] Finneblaugh's Thaumic Float will expire in " .. convertTime(DeltaTime))
+				SendToWorld ("chats", "orange", "", imessage)
+			end
+		end
+		if (iWGSDurStart ~= nil and iWGSDurStart ~= 0) then
+			local Time = os.time()
+			local TimeEnd = iWGSDuration + iWGSDurStart
+			local DeltaTime = TimeEnd - Time
+			if (DeltaTime == 60) then 
+				local imessage = ("[WGS Report] Wungle's Great Sucking will expire in " .. convertTime(DeltaTime))
+				SendToWorld ("chats", "red", "", imessage)
+			end
+		end
+		if (iGRGDurStart ~= nil and iGRGDurStart ~= 0 and iGRGDuration ~= nil and iGRGDuration ~= 0) then
+			local Time = os.time()
+			local TimeEnd = iGRGDuration + iGRGDurStart
+			local DeltaTime = TimeEnd - Time
+			if (DeltaTime == 60) then 
+				local imessage = ("[GRG Report] Grisald's Reanimated Guardian will expire in " .. convertTime(DeltaTime))
+				SendToWorld ("chats", "yellow", "", imessage)
+			end
+		end
+
+	end -- Duration Countdown
+		
+	-- Clear Counters
+
+	function clearEFF()
+		iEFFHit = 0
+		iEFFMiss = 0
+		iEFFSpecialMiss = 0
+		iEFFSpecialHit = 0
+		iEFFDurStart = 0
+	end
+
+	function clearGRG()
+		iGRGParry = 0
+		iGRGBlock = 0
+		iGRGSpecialParry = 0
+		iGRGSpecialBlock = 0
+		iGRGDurStart = 0
+	end
+
+	-- Counter functions
+
+	function EFFspecialHit()
+		iEFFSpecialHit = iEFFSpecialHit + 1
+	end -- specialHit
+
+	function EFFMiss()
+		iEFFMiss = iEFFMiss + 1
+	end -- EFFMiss
+
+	function EFFHit()
+		iEFFHit = iEFFHit + 1
+	end -- EFFHit
+
+	function EFFspecialMiss()
+		iEFFSpecialMiss = iEFFSpecialMiss + 1
+	end -- specialMiss
+
+	function GRGParry()
+		iGRGParry = iGRGParry + 1
+	end -- GRGParry
+
+	function GRGBlock()
+		iGRGBlock = iGRGBlock + 1
+	end -- GRGBlock
+
+	function GRGspecialParry()
+		iGRGSpecialParry = iGRGSpecialParry + 1
+	end -- GRGspecialParry
+
+	function GRGspecialBlock()
+		iGRGSpecialBlock = iGRGSpecialBlock + 1
+	end -- GRGspecialBlock
+
+
+	-- Function to convert Time
+
+	function convertTime(nSec)
+	  local i,f,sTimeCnt
+	  i, f = math.modf (nSec/60)
+	  return i.."m:"..(math.floor(f * 60)).."s"
+	end -- convertTime
+
+	-- Function to round up decimals
+
+	function roundToNthDecimal(num, n)
+		local mult = 10^(n or 0)
+		return math.floor(num * mult + 0.5) / mult
+	end
+
+	-- Function to send to chat window
+	function SendToWorld (name, forecolour, backcolour, imessage)
+		local otherworld = world.GetWorld (name)
+		if otherworld == nil then
+			ColourNote (forecolour, backcolour, imessage)
+		else
+			ColourNote (otherworld, forecolour, backcolour, imessage)
+		end
+	end -- of SendToWorld
+
+	function OnPluginConnect()
+		local imessage =
+		Note([[
+		
+		li.ili. Zeur's Plugin for Magick (ZPM) installed. .ili.il
+		
+		* Please use #help me zeur for instructions. Good luck!
+		
+		A Big thank you to Quow, Ecthelion, 
+		Tyro and Pranthea for whom I could 
+		not have made this plugin without!
+											
+											]])
+
+		iGFRDuration = GetVariable("iGFRDuration")
+		if (iGFRDuration ~= nil and iGFRDuration ~= 0) then
+			ColourNote("blue", "", "[GFR REPORT] Gryntard's Feathery Reliever duration has been retrieved from a previous session.")
+		else
+			ColourNote("blue", "", "[GFR REPORT] Gryntard's Feathery Reliever will be timed during this session.")
+		end
+		iFTFDuration = GetVariable("iFTFDuration")
+		if (iFTFDuration ~= nil and iFTFDuration ~= 0) then
+			ColourNote("orange", "", "[FTF REPORT] Finneblaugh's Thaumic Float duration has been retrieved from a previous session.")
+		else
+			ColourNote("orange", "", "[FTF REPORT] Finneblaugh's Thaumic Float will be timed during this session.")
+		end
+		iWGSDuration = GetVariable("iWGSDuration")
+		if (iWGSDuration ~= nil and iWGSDuration ~= 0) then
+			ColourNote("red", "", "[WGS REPORT] Wungle's Great Sucking duration has been retrieved from a previous session.")
+		else
+			ColourNote("red", "", "[WGS REPORT] Wungle's Great Sucking will be timed during this session.")
+		end
+		iGRGDuration = GetVariable("iGRGDuration")
+		if (iGRGDuration ~= nil and iGRGDuration ~= 0) then
+			ColourNote("yellow", "", "[GRG REPORT] Grisald's Reanimated Guardian duration has been retrieved from a previous session.")
+		else
+			ColourNote("yellow", "", "[GRG REPORT] Grisald's Reanimated Guardian will be timed during this session.")
+		end
+		iEFFDurStart = os.time()
+	end -- OnPluginConnect
+
+	function OnPluginInstall()
+		OnPluginConnect()
+	end
+
+	function OnPluginDisconnect()
+		if (iGFRDuration ~= nil and iGFRDuration ~= 0) then
+			SetVariable ("iGFRDuration", iGFRDuration) -- Saves the variable
+			ColourNote("blue", "", "Gryntard's Feathery Reliever duration has been stored for next session.")
+		end
+		if (iFTFDuration ~= nil and iFTFDuration ~= 0) then
+			SetVariable ("iFTFDuration", iFTFDuration)
+			ColourNote("orange", "", "Finneblaugh's Thaumic Float duration has been stored for next session.")
+		end
+		if (iWGSDuration ~= nil and iWGSDuration ~= 0) then
+			SetVariable ("iWGSDuration", iWGSDuration)
+			ColourNote("red", "", "Wungle's Great Sucking duration has been stored for next session.")
+		end
+		if (iGRGDuration ~= nil and iGRGDuration ~= 0) then
+			SetVariable ("iGRGDuration", iGRGDuration)
+			ColourNote("yellow", "", "Grisald's Reanimated Guardian duration has been stored for next session.")
+		end
+	end -- OnPluginDisconnect
+
+	function helpfile()
+	Note([[
+		
+		li.ili. Zeur's Plugin for Magick (ZPM) help .ili.il
+
+		This plugin will time the duration effects of the following spells 
+		(which will be saved upon closure of the MUD client/plugin):
+
+		Grisald's Reanimated Guardian 
+		Finneblaugh's Thaumic Float
+		Gryntard's Feathery Reliever
+		Wungle's Great Sucking
+
+		An initial cast is required to time your duration. Once this has been set,
+		it will save even on closure of the MUD client and/or plugin. From then on,
+		you will recieve a report when the effect of the spell will expire (around 1 minute or so).
+
+		There is also a spell casting stat tracker that displays casting time, 
+		fastest/slowest/average and number of casts for the following spells 
+		(which will be reset upon closure of the MUD client/plugin):
+
+		Doctor Kelleflump's Deadly Demon
+		Pragi's Fiery Gaze
+		Effermhor's Hypersonic Assault
+		Transcendent Pneumatic Alleviator
+
+		* Jogloran's Portal of Cheaper Travel  
+		* Worstler's Advanced Metallurgical Glance
+			
+		  * These two spells also have a resettable 'Session casts' tracker for 
+		    group leads
+
+		The following spells also track defensive combat stats which will display 
+		automatically on failure/end of the spells:
+
+		Endorphin's Floating Friend
+		Grisald's Reanimated Guardian
+
+		The following aliases can be used with the plugin:
+
+		#help me zeur - This Helpfile
+
+		#jpct reset - Resets session cast counter for JPCT
+
+		#wamg reset - Resets session cast counter for WAMG
+
+		#clear (GFR|FTF|WGS|GRG) duration - Clears the stored duration of the spell
+
+		#display stats - Displays spell duration and session cast counters
+
+		]])
+	end
+
+	function OnPluginClose()
+		OnPluginDisconnect()
+	end
+
+	function debug()
+		for iGFRKey,iGFRValue in pairs(iGFRTable) do
+			Note(iGFRKey)
+			Note(iGFRValue)
+		end
+		if (iGFRDuration ~= nil and iGFRDuration ~= 0) then
+			ColourNote ("blue", "", "[GFR REPORT] Time: " .. convertTime(iGFRDuration))
+		else
+			ColourNote("blue", "", "[GFR REPORT] Gryntard's Feathery Reliever duration has not been saved.")
+			Note(iGFRDuration)
+			Note(GFRinit)
+			ColourNote ("green", "", "[EFF REPORT]")
+			ColourNote ("magenta", "", "[JPCT REPORT]")
+		end
+		if (iFTFDuration ~= nil and iFTFDuration ~= 0) then
+			ColourNote ("orange", "", "[FTF REPORT] Time: " .. convertTime(iFTFDuration))
+		else
+			ColourNote ("orange", "", "[FTF REPORT] Finneblaugh's Thaumic Float duration has not been saved.")
+		end
+		if (iWGSDuration ~= nil and iWGSDuration ~= 0) then
+			ColourNote ("red", "", "[WGS REPORT] Time: " .. convertTime(iWGSDuration))
+		else
+			ColourNote ("red", "", "[WGS REPORT] Wungle's Great Sucking duration has not been saved.")
+		end
+		if (iGRGDuration ~= nil and iGRGDuration ~= 0) then
+			ColourNote ("yellow", "", "[GRG REPORT] Time: " .. convertTime(iGRGDuration))
+			Note(iGRGDuration)
+		else
+			ColourNote ("yellow", "", "[GRG REPORT] Grisald's Reanimated Guardian duration has not been saved.")
+		end
+	end
+
+	-- display jpct session count and reset
+	function JPCTreset ()
+		SendToWorld("chats", "magenta", "", "[JPCT REPORT] Session casts reset.")  
+		iJPCTSession = 0
+	end -- JPCTreset
+
+	function clearGFRduration()
+		iGFRDuration = 0
+		DeleteVariable ("iGFRDuration") -- Deletes the variable
+		SendToWorld("chats", "blue", "", "[GFR REPORT] Gryntard's Feathery Reliever duration has been reset.")
+	end
+
+	function clearFTFduration()
+		iFTFDuration = 0
+		DeleteVariable ("iFTFDuration") 
+		SendToWorld("chats", "orange", "", "[FTF REPORT] Finneblaugh's Thaumic Float duration has been reset.")
+	end
+
+	function clearWGSduration()
+		iWGSDuration = 0
+		DeleteVariable ("iWGSDuration")
+		SendToWorld("chats", "red", "", "[WGS REPORT] Wungle's Great Sucking duration has been reset.")
+	end
+
+	function clearGRGduration()
+		iGRGDuration = 0
+		DeleteVariable ("iGRGDuration")
+		SendToWorld("chats", "yellow", "", "[GRG REPORT] Grisald's Reanimated Guardian duration has been reset.")
+	end
+
+	function WAMGreset ()
+		SendToWorld("chats", "magenta", "", "[WAMG Report] Session casts reset.")  
+		iWAMGSession = 0
+	end -- WAMGreset
+
+	function DisplayStats()
+		if (iGFRDuration ~= nil and iGFRDuration ~= 0) then
+			ColourNote("blue", "", "[GFR REPORT] duration: " .. convertTime(iGFRDuration))
+		else
+			ColourNote("blue", "", "[GFR REPORT] Gryntard's Feathery Reliever duration has not been saved.")
+		end
+		if (iFTFDuration ~= nil and iFTFDuration ~= 0) then
+			ColourNote("orange", "", "[FTF REPORT] duration: " .. convertTime(iFTFDuration))
+		else
+			ColourNote("orange", "", "[FTF REPORT] Finneblaugh's Thaumic Float duration has not been saved.")
+		end
+		if (iWGSDuration ~= nil and iWGSDuration ~= 0) then
+			ColourNote("red", "", "[WGS REPORT] duration: " .. convertTime(iWGSDuration))
+		else
+			ColourNote("red", "", "[WGS REPORT] Wungle's Great Sucking duration has not been saved.")
+		end
+		if (iGRGDuration ~= nil and iGRGDuration ~= 0) then
+			ColourNote("yellow", "", "[GRG REPORT] duration: " .. convertTime(iGRGDuration))
+		else
+			ColourNote("yellow", "", "[GRG REPORT]  Grisald's Reanimated Guardian duration has not been saved.")
+		end
+		ColourNote("magenta", "", "[JPCT REPORT] Session casts: " .. iJPCTSession)
+		ColourNote("magenta", "", "[WAMG REPORT] Session casts: " .. iWAMGSession)
+	end
+
+	]]>
+	</script>
+	 
+	</muclient>
